@@ -60,6 +60,10 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "compile": [
+            "php bin/console cache:warmup",
+            "composer dump-env prod"
         ]
     },
     "conflict": {
