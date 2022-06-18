@@ -1,0 +1,7 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+landing:
+    path: /
+    controller: App\Controller\LandingController
