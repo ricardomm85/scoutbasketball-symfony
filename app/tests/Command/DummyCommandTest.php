@@ -8,7 +8,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class DummyCommandTest extends KernelTestCase
 {
-    public function testExecute()
+    public function testExecute(): void
     {
         $kernel = self::bootKernel();
         $application = new Application($kernel);

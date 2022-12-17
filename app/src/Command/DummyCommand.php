@@ -12,8 +12,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:dummy')]
 class DummyCommand extends Command
 {
-    protected static $defaultName = 'app:dummy';
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Whoa!');
