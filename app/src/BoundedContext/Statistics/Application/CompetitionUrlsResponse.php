@@ -10,7 +10,7 @@ final class CompetitionUrlsResponse
      * @var CompetitionUrlResponse[] $competitionUrlsResponse
      */
     public function __construct(
-        public readonly array $competitionUrlsResponse,
+        public readonly array $responses,
     ) {
     }
 }

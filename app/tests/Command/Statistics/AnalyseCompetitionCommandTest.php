@@ -10,7 +10,7 @@ use App\Tests\Repository\DatabaseTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class AnalyseCompetitionSeasonsCommandTest extends DatabaseTestCase
+class AnalyseCompetitionCommandTest extends DatabaseTestCase
 {
 
     public function testExecute(): void
@@ -20,7 +20,8 @@ class AnalyseCompetitionSeasonsCommandTest extends DatabaseTestCase
 
 
         $competition = new Competition();
-        $competition->setName('Test');
+        $competition->setName('Test Name');
+        $competition->setSlug('test-slug');
         $this->entityManager->persist($competition);
 
         $competitionUrl = new CompetitionUrl();
@@ -42,6 +43,7 @@ class AnalyseCompetitionSeasonsCommandTest extends DatabaseTestCase
         $commandTester->execute([]);
         $commandTester->assertCommandIsSuccessful();
 
-        // @TODO assert jobs are being created
+        $transport = $this->getContainer()->get('messenger.transport.async');
+        $this->assertCount(1, $transport->get());
     }
 }

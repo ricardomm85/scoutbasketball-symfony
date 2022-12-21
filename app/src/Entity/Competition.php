@@ -18,11 +18,14 @@ class Competition
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 33)]
+    #[ORM\Column(length: 33, unique: true, nullable: false)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 62, unique: true, nullable: false)]
+    private ?string $slug = null;
+
     #[ORM\OneToMany(mappedBy: 'competition', targetEntity: CompetitionUrl::class)]
-    private $competitionUrls;
+    private ?Collection $competitionUrls;
 
     public function __construct()
     {
@@ -46,8 +49,20 @@ class Competition
         return $this;
     }
 
+    public function slug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
     /**
-     * @return Collection|CompetitionUrl[]
+     * @return Collection&CompetitionUrl[]
      */
     public function competitionUrls(): Collection
     {

@@ -21,7 +21,7 @@ final class FindAllCompetitionUrlsCommandHandler
 
         foreach ($competitionUrls as $competitionUrl) {
             $competitionUrlsResponse[] = new CompetitionUrlResponse(
-                $competitionUrl->competition()->id(),
+                $competitionUrl->competition()->slug(),
                 $competitionUrl->competition()->name(),
                 $competitionUrl->url(),
             );

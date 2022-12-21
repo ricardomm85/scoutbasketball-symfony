@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace App\Command\Statistics;
 
+use App\BoundedContext\Statistics\Application\AnalyzeCompetitionUrlCommand;
 use App\BoundedContext\Statistics\Application\FindAllCompetitionUrlsCommand;
 use App\BoundedContext\Statistics\Application\FindAllCompetitionUrlsCommandHandler;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
-final class AnalyseCompetitionSeasonsCommand extends Command
+final class AnalyseCompetitionCommand extends Command
 {
     public function __construct(
         private readonly FindAllCompetitionUrlsCommandHandler $findAllCompetitionUrlsCommandHandler,
+        private readonly MessageBusInterface $bus,
     ) {
         parent::__construct();
     }
@@ -22,17 +25,23 @@ final class AnalyseCompetitionSeasonsCommand extends Command
     {
         $this
             ->setName('app:competitions:analyse')
-            ->setDescription('Enqueue a job for each active competition url to FetchAndSaveSeasons');
+            ->setDescription('Enqueue a job for each active competition url');
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        // @TODO command bus
         $command = new FindAllCompetitionUrlsCommand();
         $competitionUrls = $this->findAllCompetitionUrlsCommandHandler->__invoke($command);
 
-        // @TODO create job for each url
+        foreach ($competitionUrls->responses as $competitionUrl) {
+            $command = new AnalyzeCompetitionUrlCommand(
+                url: $competitionUrl->url,
+                slug: $competitionUrl->slug,
+                name: $competitionUrl->name,
+            );
+            $this->bus->dispatch($command);
+        }
 
         return Command::SUCCESS;
     }
