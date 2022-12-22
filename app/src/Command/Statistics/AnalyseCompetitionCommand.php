@@ -14,6 +14,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 final class AnalyseCompetitionCommand extends Command
 {
+    protected static $defaultName = 'app:competitions:analyse';
     public function __construct(
         private readonly FindAllCompetitionUrlsCommandHandler $findAllCompetitionUrlsCommandHandler,
         private readonly MessageBusInterface $bus,
@@ -23,9 +24,7 @@ final class AnalyseCompetitionCommand extends Command
 
     protected function configure(): void
     {
-        $this
-            ->setName('app:competitions:analyse')
-            ->setDescription('Enqueue a job for each active competition url');
+        $this->setDescription('Enqueue a job for each active competition url');
         ;
     }
 

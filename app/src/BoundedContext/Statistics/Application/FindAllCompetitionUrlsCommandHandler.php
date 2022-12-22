@@ -6,7 +6,7 @@ namespace App\BoundedContext\Statistics\Application;
 
 use App\Repository\CompetitionUrlRepository;
 
-final class FindAllCompetitionUrlsCommandHandler
+final readonly class FindAllCompetitionUrlsCommandHandler
 {
     public function __construct(
         private readonly CompetitionUrlRepository $competitionUrlRepository,

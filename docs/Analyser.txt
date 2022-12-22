@@ -1,0 +1,14 @@
+
+
+
+Competitions (Tienen varias urls)
+ - Cron mensual: Añade un job por cada competition_url activa.
+    -> AnalyseCompetitionCommand
+ - Manualmente: añade un job solo de 1 competition_url.
+ - IN: competition_id, competition_url
+ - OUT: seasons (start, end, url)
+
+
+Seasons (Solo tiene 1 competition con varias urls)
+ - IN: competition_id, season_id, season_url
+ - OUT: teams (name, url)

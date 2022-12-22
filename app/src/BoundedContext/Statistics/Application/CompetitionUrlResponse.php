@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\BoundedContext\Statistics\Application;
 
-final class CompetitionUrlResponse
+final readonly class CompetitionUrlResponse
 {
     public function __construct(
-        public readonly string $slug,
-        public readonly string $name,
-        public readonly string $url,
+        public string $slug,
+        public string $name,
+        public string $url,
     ) {
     }
 }

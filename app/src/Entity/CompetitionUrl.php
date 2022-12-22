@@ -23,7 +23,7 @@ class CompetitionUrl
     private ?bool $enabled = null;
 
     #[ORM\ManyToOne(targetEntity: Competition::class, inversedBy: 'competition')]
-    private ?Competition $competition;
+    private ?Competition $competition = null;
 
     public function id(): ?int
     {
