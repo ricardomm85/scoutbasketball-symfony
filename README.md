@@ -3,7 +3,10 @@
 
 - `docker-compose up`
 - Web: http://localhost:11001/
-- Access PHP container: `docker exec -it scoutbasketball-symfony-2022-php bash`
+- Access PHP container: `docker-compose exec php bash`
+
+# Testing
+docker-compose run php bin/phpunit
 
 # Xdebug
 
