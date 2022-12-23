@@ -1,3 +1,4 @@
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/ricardomm85/0c1f8403decd5753c549451042d2c952/raw/scoutbasketball-symfony-coverage.json)
 
 # Bring up the project
 - `docker-compose up`

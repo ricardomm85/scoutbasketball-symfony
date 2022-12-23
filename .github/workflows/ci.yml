@@ -44,3 +44,19 @@ jobs:
 
       - name: Run Rector
         run: vendor/bin/rector process --dry-run
+
+      - name: Save coverage
+        run: |
+          echo "COVERAGE=$(grep -oP '(?<=Lines:   )(\d{0,2}\.\d{0,2})' var/coverage/coverage.txt)" >> $GITHUB_ENV
+
+      - name: Create coverage Badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 0c1f8403decd5753c549451042d2c952
+          filename: scoutbasketball-symfony-coverage.json
+          label: Coverage
+          message: ${{ env.COVERAGE }}
+          valColorRange: ${{ env.COVERAGE }}
+          maxColorRange: 100
+          minColorRange: 0
