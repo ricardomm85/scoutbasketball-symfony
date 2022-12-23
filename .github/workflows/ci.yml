@@ -25,4 +25,8 @@ jobs:
         with:
           working_dir: ./app
 
-      - uses: php-actions/phpunit@v3
+      - name: PHPUnit tests
+        uses: php-actions/phpunit@v3
+        with:
+          configuration: app/phpunit.xml.dist
+          memory_limit: 64M
