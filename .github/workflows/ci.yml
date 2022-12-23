@@ -8,6 +8,7 @@ defaults:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -32,18 +33,13 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
+      - parallel:
+        test:
+          steps:
+            - name: Run PhpUnit tests
+              run: vendor/bin/phpunit
 
-    steps:
-      - name: Run PhpUnit tests
-        run: vendor/bin/phpunit
-
-  phpstan:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --xdebug
+        phpstan:
+          steps:
+            - name: Run PHPStan
+              run: vendor/bin/phpstan analyse --xdebug
