@@ -16,7 +16,7 @@ final readonly class FindAllCompetitionUrlsCommandHandler
     public function __invoke(FindAllCompetitionUrlsCommand $command): CompetitionUrlsResponse
     {
         $competitionUrls = $this->competitionUrlRepository->findBy([
-            'enabled' => true
+            'enabled' => true,
         ]);
 
         $competitionUrlsResponse = [];

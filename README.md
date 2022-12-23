@@ -4,15 +4,15 @@
 - Web: http://localhost:11001/
 - Access PHP container: `docker-compose exec php bash`
 
-# Testing
-docker-compose run php bin/phpunit
+# Linting and testing
+  - docker-compose run php bin/phpunit
 
-# Phpstan
-docker-compose run php vendor/bin/phpstan analyse --xdebug
+  - docker-compose run php vendor/bin/ecs check
 
-# Rector
-docker-compose run php vendor/bin/rector process --dry-run
-docker-compose run php vendor/bin/rector process
+  - docker-compose run php vendor/bin/phpstan analyse --xdebug
+
+  - docker-compose run php vendor/bin/rector process --dry-run
+
 (and `sudo chown -R ricardo:ricardo app/`)
 
 # Xdebug
