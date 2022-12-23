@@ -2,10 +2,6 @@ name: CI
 
 on: [push]
 
-defaults:
-  run:
-    working-directory: ./app
-
 jobs:
   phpunit:
     name: PHPUnit
