@@ -7,8 +7,7 @@ defaults:
     working-directory: app
 
 jobs:
-  ci:
-    name: CI
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,8 +32,18 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist
 
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Run PhpUnit tests
         run: vendor/bin/phpunit
 
+  phpstan:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse --xdebug
