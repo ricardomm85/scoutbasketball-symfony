@@ -9,14 +9,14 @@ use App\Repository\CompetitionUrlRepository;
 final readonly class FindAllCompetitionUrlsCommandHandler
 {
     public function __construct(
-        private CompetitionUrlRepository $competitionUrlRepository,
+        private readonly CompetitionUrlRepository $competitionUrlRepository,
     ) {
     }
 
     public function __invoke(FindAllCompetitionUrlsCommand $command): CompetitionUrlsResponse
     {
         $competitionUrls = $this->competitionUrlRepository->findBy([
-            'enabled' => true,
+            'enabled' => true
         ]);
 
         $competitionUrlsResponse = [];

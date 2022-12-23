@@ -33,7 +33,10 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist
 
-      - name: Run PhpUnit tests
+      - name: Run Easy Coding Standard
+        run: php vendor/bin/ecs check
+
+      - name: Run PhpUnit
         run: vendor/bin/phpunit
 
       - name: Run PHPStan
