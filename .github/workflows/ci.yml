@@ -5,10 +5,10 @@ on: [push]
 jobs:
   phpunit:
     name: PHPUnit
+    runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: app/app
-    runs-on: ubuntu-latest
+        working-directory: ./app
 
     steps:
       - uses: actions/checkout@v3
