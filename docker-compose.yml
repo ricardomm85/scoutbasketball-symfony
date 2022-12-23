@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   php:
-    container_name: scoutbasketball-symfony-2022-php
+    container_name: scoutbasketball-symfony-php
     build:
       context: ./docker/php
     ports:
@@ -15,7 +15,7 @@ services:
       - database
 
   database:
-    container_name: scoutbasketball-symfony-2022-database
+    container_name: scoutbasketball-symfony-database
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -29,7 +29,7 @@ services:
       - ./docker/mysql/data:/var/lib/mysql
 
   nginx:
-    container_name: scoutbasketball-symfony-2022-nginx
+    container_name: scoutbasketball-symfony-nginx
     image: nginx:stable-alpine
     ports:
       - '11001:80'
