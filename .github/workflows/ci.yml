@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   phpunit:
-    name: PHPUnit
+    name: PHPUnit && PHPStan
     runs-on: ubuntu-latest
 
     steps:
@@ -26,3 +26,8 @@ jobs:
         with:
           configuration: app/phpunit.xml.dist
           memory_limit: 64M
+
+      - name: PHPStan Static Analysis
+        uses: php-actions/phpstan@v3
+        with:
+          configuration: app/phpstan.neon
