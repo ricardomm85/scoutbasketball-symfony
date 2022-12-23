@@ -33,13 +33,8 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist
 
-      - parallel:
-        test:
-          steps:
-            - name: Run PhpUnit tests
-              run: vendor/bin/phpunit
+      - name: Run PhpUnit tests
+        run: vendor/bin/phpunit
 
-        phpstan:
-          steps:
-            - name: Run PHPStan
-              run: vendor/bin/phpstan analyse --xdebug
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --xdebug
