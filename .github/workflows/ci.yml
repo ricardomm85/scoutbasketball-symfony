@@ -6,9 +6,6 @@ jobs:
   phpunit:
     name: PHPUnit
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app
 
     steps:
       - uses: actions/checkout@v3
@@ -19,6 +16,9 @@ jobs:
           path: /tmp/composer-cache
           key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
 
-      - uses: php-actions/composer@v6
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          working_dir: ./app
 
       - uses: php-actions/phpunit@v3
