@@ -2,6 +2,10 @@ name: CI
 
 on: [push]
 
+defaults:
+  run:
+    working-directory: ./app
+
 jobs:
   phpunit:
     name: PHPUnit
@@ -21,7 +25,4 @@ jobs:
         with:
           working_dir: ./app
 
-      - name: Run PHPUnit
-        uses: php-actions/phpunit@v3
-        with:
-          working_dir: ./app
+      - uses: php-actions/phpunit@v3
