@@ -2,13 +2,12 @@ name: CI
 
 on: [push]
 
-defaults:
-  run:
-    working-directory: ./app
-
 jobs:
   phpunit:
     name: PHPUnit
+    defaults:
+      run:
+        working-directory: ./app
     runs-on: ubuntu-latest
 
     steps:
