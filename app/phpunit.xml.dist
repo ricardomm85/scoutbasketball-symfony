@@ -30,7 +30,6 @@
         </include>
         <report>
             <text outputFile="var/coverage/coverage.txt" />
-            <php outputFile="var/coverage/coverage.php" />
         </report>
     </coverage>
 

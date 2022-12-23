@@ -56,7 +56,7 @@ jobs:
           gistID: 0c1f8403decd5753c549451042d2c952
           filename: scoutbasketball-symfony-coverage.json
           label: Coverage
-          message: ${{ env.COVERAGE }}
+          message: ${{ env.COVERAGE }}%
           valColorRange: ${{ env.COVERAGE }}
           maxColorRange: 100
           minColorRange: 0
