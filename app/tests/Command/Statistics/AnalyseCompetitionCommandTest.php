@@ -12,12 +12,10 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class AnalyseCompetitionCommandTest extends DatabaseTestCase
 {
-
     public function testExecute(): void
     {
         $kernel = self::bootKernel();
         $application = new Application($kernel);
-
 
         $competition = new Competition();
         $competition->setName('Test Name');

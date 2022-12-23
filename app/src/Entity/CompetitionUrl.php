@@ -19,7 +19,9 @@ class CompetitionUrl
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
-    #[ORM\Column(options: ['default' => 0])]
+    #[ORM\Column(options: [
+        'default' => 0,
+    ])]
     private ?bool $enabled = null;
 
     #[ORM\ManyToOne(targetEntity: Competition::class, inversedBy: 'competition')]

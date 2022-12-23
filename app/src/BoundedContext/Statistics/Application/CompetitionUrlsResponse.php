@@ -7,7 +7,7 @@ namespace App\BoundedContext\Statistics\Application;
 final readonly class CompetitionUrlsResponse
 {
     /**
-     * @var CompetitionUrlResponse[] $competitionUrlsResponse
+     * @param CompetitionUrlResponse[] $responses
      */
     public function __construct(
         public array $responses,

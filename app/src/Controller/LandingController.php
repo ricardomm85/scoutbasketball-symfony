@@ -13,7 +13,7 @@ final class LandingController
         $number = random_int(0, 100);
 
         return new Response(
-            '<html lang="en"><body>Hello world! '.$number.'</body></html>'
+            '<html lang="en"><body>Hello world! ' . $number . '</body></html>'
         );
     }
 }

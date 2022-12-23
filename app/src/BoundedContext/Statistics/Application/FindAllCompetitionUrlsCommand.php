@@ -6,5 +6,4 @@ namespace App\BoundedContext\Statistics\Application;
 
 final class FindAllCompetitionUrlsCommand
 {
-
 }

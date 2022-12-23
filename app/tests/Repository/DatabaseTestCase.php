@@ -18,7 +18,7 @@ abstract class DatabaseTestCase extends KernelTestCase
     {
         $kernel = self::bootKernel();
 
-        if ('test' !== $kernel->getEnvironment()) {
+        if ($kernel->getEnvironment() !== 'test') {
             throw new LogicException(
                 "Using '{$kernel->getEnvironment()}' environment, but 'test' environment is expected."
             );
@@ -31,6 +31,14 @@ abstract class DatabaseTestCase extends KernelTestCase
             ->getManager();
     }
 
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        // doing this is recommended to avoid memory leaks
+        $this->entityManager->close();
+    }
+
     private function initDatabase(KernelInterface $kernel): void
     {
         // TODO remove line below
@@ -39,13 +47,5 @@ abstract class DatabaseTestCase extends KernelTestCase
         $metaData = $entityManager->getMetadataFactory()->getAllMetadata();
         $schemaTool = new SchemaTool($entityManager);
         $schemaTool->updateSchema($metaData);
-    }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        // doing this is recommended to avoid memory leaks
-        $this->entityManager->close();
     }
 }

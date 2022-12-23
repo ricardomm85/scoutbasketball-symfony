@@ -71,7 +71,7 @@ class Competition
 
     public function addCompetitionUrl(CompetitionUrl $competitionUrl): self
     {
-        if (!$this->competitionUrls->contains($competitionUrl)) {
+        if ($this->competitionUrls->contains($competitionUrl) === false) {
             $this->competitionUrls[] = $competitionUrl;
             $competitionUrl->setCompetition($this);
         }
@@ -90,5 +90,4 @@ class Competition
 
         return $this;
     }
-
 }
