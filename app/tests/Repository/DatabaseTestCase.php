@@ -8,7 +8,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 abstract class DatabaseTestCase extends KernelTestCase
 {
@@ -24,11 +23,9 @@ abstract class DatabaseTestCase extends KernelTestCase
             );
         }
 
-        $this->initDatabase($kernel);
+        $this->entityManager = $kernel->getContainer()->get('doctrine.orm.entity_manager');
 
-        $this->entityManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        $this->initDatabase($this->entityManager);
     }
 
     protected function tearDown(): void
@@ -39,11 +36,8 @@ abstract class DatabaseTestCase extends KernelTestCase
         $this->entityManager->close();
     }
 
-    private function initDatabase(KernelInterface $kernel): void
+    private function initDatabase(EntityManagerInterface $entityManager): void
     {
-        // TODO remove line below
-        /** @var EntityManagerInterface $entityManager */
-        $entityManager = $kernel->getContainer()->get('doctrine.orm.entity_manager');
         $metaData = $entityManager->getMetadataFactory()->getAllMetadata();
         $schemaTool = new SchemaTool($entityManager);
         $schemaTool->updateSchema($metaData);

@@ -19,13 +19,16 @@ class Competition
     private ?int $id = null;
 
     #[ORM\Column(length: 33, unique: true, nullable: false)]
-    private ?string $name = null;
+    private string $name;
 
     #[ORM\Column(length: 62, unique: true, nullable: false)]
-    private ?string $slug = null;
+    private string $slug;
 
+    /**
+     * @var Collection<int, CompetitionUrl>
+     */
     #[ORM\OneToMany(mappedBy: 'competition', targetEntity: CompetitionUrl::class)]
-    private ?Collection $competitionUrls;
+    private Collection $competitionUrls;
 
     public function __construct()
     {
@@ -37,7 +40,7 @@ class Competition
         return $this->id;
     }
 
-    public function name(): ?string
+    public function name(): string
     {
         return $this->name;
     }
@@ -49,7 +52,7 @@ class Competition
         return $this;
     }
 
-    public function slug(): ?string
+    public function slug(): string
     {
         return $this->slug;
     }
@@ -62,32 +65,10 @@ class Competition
     }
 
     /**
-     * @return Collection&CompetitionUrl[]
+     * @return Collection<int, CompetitionUrl>
      */
     public function competitionUrls(): Collection
     {
         return $this->competitionUrls;
-    }
-
-    public function addCompetitionUrl(CompetitionUrl $competitionUrl): self
-    {
-        if ($this->competitionUrls->contains($competitionUrl) === false) {
-            $this->competitionUrls[] = $competitionUrl;
-            $competitionUrl->setCompetition($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCompetitionUrl(CompetitionUrl $competitionUrl): self
-    {
-        if ($this->competitionUrls->removeElement($competitionUrl)) {
-            // set the owning side to null (unless already changed)
-            if ($competitionUrl->competition() === $this) {
-                $competitionUrl->setCompetition(null);
-            }
-        }
-
-        return $this;
     }
 }

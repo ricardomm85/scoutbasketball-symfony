@@ -23,13 +23,13 @@ class AnalyseCompetitionCommandTest extends DatabaseTestCase
         $this->entityManager->persist($competition);
 
         $competitionUrl = new CompetitionUrl();
-        $competitionUrl->setUrl('https://example.com');
+        $competitionUrl->setUrl('https://example1.com');
         $competitionUrl->setEnabled(true);
         $competitionUrl->setCompetition($competition);
         $this->entityManager->persist($competitionUrl);
 
         $competitionUrl = new CompetitionUrl();
-        $competitionUrl->setUrl('https://example.com');
+        $competitionUrl->setUrl('https://example2.com');
         $competitionUrl->setEnabled(false);
         $competitionUrl->setCompetition($competition);
         $this->entityManager->persist($competitionUrl);

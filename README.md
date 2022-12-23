@@ -7,6 +7,9 @@
 # Testing
 docker-compose run php bin/phpunit
 
+# Phpstan
+docker-compose run php vendor/bin/phpstan analyse --xdebug
+
 # Rector
 docker-compose run php vendor/bin/rector process --dry-run
 docker-compose run php vendor/bin/rector process

@@ -9,7 +9,7 @@ use App\Repository\CompetitionUrlRepository;
 final readonly class FindAllCompetitionUrlsCommandHandler
 {
     public function __construct(
-        private readonly CompetitionUrlRepository $competitionUrlRepository,
+        private CompetitionUrlRepository $competitionUrlRepository,
     ) {
     }
 
