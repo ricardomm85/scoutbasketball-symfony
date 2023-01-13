@@ -1,0 +1,3 @@
+"Invalid credentials.": "Invalid email/password entered!"
+"Username could not be found.": "Invalid email/password entered!"
+"Invalid CSRF token.": "Invalid request, please try again."

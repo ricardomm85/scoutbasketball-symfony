@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
+use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
+use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
+use Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
@@ -13,6 +17,18 @@ return static function (ECSConfig $ecsConfig): void {
         __DIR__ . '/config',
         __DIR__ . '/ecs.php',
         __DIR__ . '/rector.php',
+    ]);
+
+    $ecsConfig->skip([
+        __DIR__ . '/config/bundles.php',
+        NotOperatorWithSuccessorSpaceFixer::class,
+        StandaloneLineInMultilineArrayFixer::class => [
+            __DIR__ . '/src/Infrastructure/Inflector.php',
+        ],
+        ArrayListItemNewlineFixer::class => [
+            __DIR__ . '/src/Infrastructure/Inflector.php',
+        ],
+        ArrayOpenerAndCloserNewlineFixer::class,
     ]);
 
     $ecsConfig->sets(

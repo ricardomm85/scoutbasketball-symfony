@@ -25,6 +25,8 @@ services:
       MYSQL_PASSWORD: db-pass
     ports:
       - '11002:3306'
+    cap_add:
+      - SYS_NICE
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
 
