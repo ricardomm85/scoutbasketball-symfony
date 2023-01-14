@@ -4,18 +4,13 @@
 # Bring up the project
 - `docker-compose up`
 - Web: http://localhost:11001/
-- Access PHP container: `docker-compose exec php bash`
 
-# Linting and testing
-  - docker-compose run php bin/phpunit
-
-  - docker-compose run php vendor/bin/ecs check
-
-  - docker-compose run php vendor/bin/phpstan analyse --xdebug
-
-  - docker-compose run php vendor/bin/rector process --dry-run
-
-(and `sudo chown -R ricardo:ricardo app/`)
+# Database
+- `symfony console make:migration`
+- `symfony console doctrine:migrations:migrate`
+- Create factory:
+  - symfony console make:factory
+  - symfony console doctrine:fixtures:load
 
 # Xdebug
 - Chrome extension: https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc

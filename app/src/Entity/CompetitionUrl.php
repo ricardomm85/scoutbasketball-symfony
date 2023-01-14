@@ -6,10 +6,11 @@ namespace App\Entity;
 
 use App\Repository\CompetitionUrlRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Stringable;
 
 #[ORM\Entity(repositoryClass: CompetitionUrlRepository::class)]
 #[ORM\Table(name: 'competition_urls')]
-class CompetitionUrl
+class CompetitionUrl implements Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,7 +26,13 @@ class CompetitionUrl
     private bool $enabled;
 
     #[ORM\ManyToOne(targetEntity: Competition::class, inversedBy: 'competition')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private Competition $competition;
+
+    public function __toString(): string
+    {
+        return $this->url;
+    }
 
     public function id(): ?int
     {

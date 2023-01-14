@@ -16,3 +16,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
+
+RUN curl -sL https://deb.nodesource.com/setup_18.x -o node_setup.sh && \
+    bash node_setup.sh && \
+    apt-get install -y nodejs && \
+    npm install npm -g \

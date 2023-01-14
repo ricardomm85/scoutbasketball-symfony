@@ -16,6 +16,10 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/tests',
     ]);
 
+    $rectorConfig->skip([
+        __DIR__ . '/config/bundles.php',
+    ]);
+
     $rectorConfig->importNames();
     $rectorConfig->importShortClasses(false);
     $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');

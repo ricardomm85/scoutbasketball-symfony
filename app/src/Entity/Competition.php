@@ -8,10 +8,11 @@ use App\Repository\CompetitionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Stringable;
 
 #[ORM\Entity(repositoryClass: CompetitionRepository::class)]
 #[ORM\Table(name: 'competitions')]
-class Competition
+class Competition implements Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -33,6 +34,11 @@ class Competition
     public function __construct()
     {
         $this->competitionUrls = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
     public function id(): ?int
@@ -70,5 +76,22 @@ class Competition
     public function competitionUrls(): Collection
     {
         return $this->competitionUrls;
+    }
+
+    public function addCompetitionUrl(CompetitionUrl $competitionUrl): self
+    {
+        if ($this->competitionUrls->contains($competitionUrl) === false) {
+            $this->competitionUrls[] = $competitionUrl;
+            $competitionUrl->setCompetition($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompetitionUrl(CompetitionUrl $competitionUrl): self
+    {
+        $this->competitionUrls->removeElement($competitionUrl);
+
+        return $this;
     }
 }
